@@ -1,0 +1,19 @@
+%fw700 {
+  font-weight: 700;
+}
+%fw500 {
+  font-weight: 500;
+}
+.step {
+  @extend %fw700;
+}
+legend {
+  @extend %fw700;
+  font-size: 1.7rem;
+}
+::placeholder {
+  @extend %fw500;
+}
+label {
+  font-size: 0.85rem;
+}

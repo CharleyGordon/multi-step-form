@@ -1,0 +1,28 @@
+[data-grid] {
+  display: grid;
+}
+[data-even-columns] {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+[data-flex] {
+  display: flex;
+}
+[data-justify-content="center"] {
+  justify-content: center;
+}
+[data-justify-items="center"] {
+  justify-content: center;
+}
+[data-align-content="center"] {
+  align-content: center;
+}
+[data-align-items="center"] {
+  align-items: center;
+}
+[data-relative] {
+  position: relative;
+}
+[data-absolute] {
+  position: absolute;
+}
