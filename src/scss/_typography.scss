@@ -15,5 +15,17 @@ legend {
   @extend %fw500;
 }
 label {
+  @extend %fw700;
   font-size: 0.85rem;
+}
+
+.charge-option {
+  text-transform: capitalize;
+}
+.navigation {
+  font-weight: 600;
+}
+.total-cost {
+  @extend %fw700;
+  font-size: 1.2rem;
 }

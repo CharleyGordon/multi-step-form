@@ -11,16 +11,67 @@ $secondary: (
   "magnolia": hsl(217, 100%, 97%),
   "alabaster": hsl(231, 100%, 99%),
 );
+%checked input:is([type="radio"], .cb) {
+  outline: 1px solid map-get($secondary, "light-gray");
+  outline-offset: -1px;
+  &:checked {
+    outline: 1px solid map-get($primary, "marine-blue");
+  }
+}
+// backgrounds
 .wrapper {
   background-color: map-get($secondary, "magnolia");
 }
 form {
   background-color: white;
+  @extend %checked;
+}
+.plan,
+.addons {
+  input:not(.charge):checked {
+    z-index: -1;
+    background-color: transparentize(map-get($secondary, "light-gray"), 0.6);
+  }
+}
+.charge-option {
+  background-color: map-get($secondary, "light-gray");
+  color: map-get($secondary, "magnolia");
+  .charge {
+    background-color: map-get($primary, "marine-blue");
+  }
+}
+.sum-up {
+  background-color: map-get($secondary, "light-gray");
+}
+.next {
+  background-color: map-get($primary, "marine-blue");
+  color: white;
+}
+.previous {
+  color: map-get($secondary, "light-gray");
 }
 // text
+.step {
+  &.light-up::before {
+    color: white;
+  }
+  &::before {
+    color: black;
+  }
+}
 .req {
   color: map-get($secondary, "cool-gray");
 }
 ::placeholder {
   color: map-get($secondary, "cool-gray");
+}
+label::before {
+  color: map-get($secondary, "light-gray");
+  font-weight: 400;
+}
+label::after {
+  color: map-get($primary, "marine-blue");
+}
+.total-cost {
+  color: map-get($primary, "marine-blue");
 }

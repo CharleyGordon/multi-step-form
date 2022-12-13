@@ -11,20 +11,20 @@
       href="./images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="src/css/style.css" />
-
+    <script src="/src/js/script.js" defer></script>
     <title>Frontend Mentor | Multi-step form</title>
   </head>
   <body>
     <!-- Sidebar start -->
     <div class="wrapper" data-grid="">
       <aside class="sidebar" data-grid="">
-        <span class="step" data-desc="Your info"></span
+        <span class="step light-up" data-desc="Your info"></span
         ><span class="step" data-desc="Select plan"></span
         ><span class="step" data-desc="Add-ons"></span
         ><span class="step" data-desc="Summary"></span>
       </aside>
       <form action="" data-grid>
-        <fieldset data-grid class="personal-info">
+        <fieldset data-grid class="personal-info first" data-current>
           <legend>Personal info</legend>
           <span class="req"
             >Please provide your name, email address, and phone number</span
@@ -45,74 +45,153 @@
               id="phone"
           /></label>
         </fieldset>
-        <fieldset data-grid class="plan" data-current>
+        <fieldset data-grid class="plan">
           <legend>Select your plan</legend>
           <span class="req"
             >You have the option of monthly or yearly billing.</span
           >
-          <label data-relative data-grid="" for="arcade"
+          <label
+            data-relative
+            data-grid=""
+            for="arcade"
+            data-monthly="$9/mo"
+            data-yearly="$90/mo"
             >arcade<input
               data-absolute
               type="radio"
               name="pricing"
-              id="arcade" /></label
-          ><label data-relative data-grid="" for="advanced"
+              id="arcade"
+            />
+            <span>2 month free</span></label
+          ><label
+            data-relative
+            data-grid=""
+            for="advanced"
+            data-monthly="$12/mo"
+            data-yearly="$120/mo"
             >advanced<input
               data-absolute
               type="radio"
               name="pricing"
-              id="advanced" /></label
-          ><label data-relative data-grid="" for="pro"
-            >pro<input data-absolute type="radio" name="pricing" id="pro"
-          /></label>
-          <div class="charge-option">
-            <span>monthly</span><input class="charge" type="checkbox" /><span
-              >yearly</span
-            >
+              id="advanced"
+            />
+            <span>2 month free</span></label
+          ><label
+            data-relative
+            data-grid=""
+            for="pro"
+            data-monthly="$15/mo"
+            data-yearly="$150/mo"
+            >pro<input data-absolute type="radio" name="pricing" id="pro" />
+            <span>2 month free</span></label
+          >
+          <div
+            class="charge-option"
+            data-grid
+            data-justify-content="center"
+            data-align-items="center"
+          >
+            <input
+              class="charge"
+              type="checkbox"
+              data-relative
+              data-grid
+              data-align-items="center"
+            />
+            <span class="monthly">monthly</span
+            ><span class="yearly">yearly</span>
           </div>
         </fieldset>
         <fieldset data-grid class="addons">
           <legend>Pick add-ons</legend>
           <span class="req">Add-ons help enhance your gaming experience.</span>
           <label
+            data-align-items="center"
+            data-relative
             data-grid=""
-            for="online service"
+            for="online-service"
             data-monthly="+$1/mo"
             data-yearly="+$10/yr"
             data-explain="Access to multiplayer games"
-            >online service<input
+            ><p>online service</p>
+            <input
+              data-absolute
               type="checkbox"
+              class="cb"
               name=""
-              id="online service" /></label
+              id="online-service" />
+            <input type="checkbox" name="" id="" class="identify" /></label
           ><label
+            data-align-items="center"
+            data-relative
             data-grid=""
-            for="larger storage"
+            for="larger-storage"
             data-monthly="+$2/mo"
             data-yearly="+$20/yr"
             data-explain="Extra 1TB of cloud save"
-            >larger storage<input
+            ><p>larger storage</p>
+            <input
+              data-absolute
               type="checkbox"
+              class="cb"
               name=""
-              id="larger storage" /></label
+              id="larger-storage" />
+            <input type="checkbox" name="" id="" class="identify" /></label
           ><label
+            data-align-items="center"
+            data-relative
             data-grid=""
-            for="customizable profile"
+            for="customizable-profile"
             data-monthly="+$2/mo"
             data-yearly="+$20/yr"
             data-explain="Custom theme on your profile"
-            >customizable profile<input
+            ><p>customizable profile</p>
+            <input
+              data-absolute
+              type="checkbox"
+              class="cb"
+              name=""
+              id="customizable-profile" /><input
               type="checkbox"
               name=""
-              id="customizable profile"
+              id=""
+              class="identify"
           /></label>
         </fieldset>
-        <fieldset data-grid class="summary">
+        <fieldset data-grid class="summary last">
           <legend>Finishing up</legend>
           <span class="req"
             >Double-check everything looks OK before confirming.</span
           >
+          <div class="sum-up" data-grid>
+            <div class="order" data-grid>
+              <span class="choice">your choice</span
+              ><span class="price">price</span
+              ><a href="" class="change">Change</a>
+            </div>
+            <hr />
+            <div class="order" data-grid>
+              <span class="choice">service</span
+              ><span class="price">price</span>
+            </div>
+            <div class="order" data-grid>
+              <span class="choice">service</span
+              ><span class="price">price</span>
+            </div>
+          </div>
+          <div
+            class="total"
+            data-grid=""
+            data-even-columns
+            data-align-items="center"
+          >
+            <span>total:</span>
+          </div>
         </fieldset>
       </form>
+      <nav class="navigation" data-flex data-justify-content="space-between">
+        <a class="previous disable">Go back</a><a class="next">Next step</a>
+      </nav>
     </div>
     <!-- Step 1 Your info Step 2 Select plan Step 3 Add-ons Step 4 Summary -->
 
