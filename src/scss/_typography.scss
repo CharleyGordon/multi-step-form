@@ -19,7 +19,8 @@ label {
   font-size: 0.85rem;
 }
 
-.charge-option {
+.charge-option,
+.validation.fail::after {
   text-transform: capitalize;
 }
 .navigation {
@@ -28,4 +29,24 @@ label {
 .total-cost {
   @extend %fw700;
   font-size: 1.2rem;
+}
+.main {
+  &-plan,
+  &-price {
+    @extend %fw700;
+  }
+}
+fieldset.thank-you {
+  text-align: center;
+  .thanks {
+    @extend %fw700;
+    font-size: max(3vw, 2.2rem);
+  }
+}
+.addons *::after {
+  @extend %fw500;
+}
+.validation.fail::after {
+  content: "this field is required";
+  margin-inline-start: auto;
 }

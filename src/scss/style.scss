@@ -5,7 +5,9 @@
 :root {
   font-family: "Ubuntu", sans-serif;
   --padding: min(2rem, 3vh);
+  font-size: 16px;
 }
+$media: 800px;
 %stick {
   grid-row: 1;
   grid-column: 1;
@@ -16,8 +18,11 @@
   span {
     display: none;
     opacity: 0;
-    grid-row: 3;
-    grid-column: 2;
+    grid-row: 4;
+    @media (max-width: #{$media}) {
+      grid-column: 2;
+      grid-row: 3;
+    }
     font-weight: 400;
     color: black;
     translate: 0 -100%;
@@ -32,7 +37,6 @@
   }
   &::after {
     content: attr(var(--data));
-    grid-column: 2;
   }
 }
 %capitalize {
@@ -50,10 +54,10 @@
   border-radius: 0.5vmax;
 }
 %radius-normal {
-  border-radius: 0.5vmax;
+  border-radius: 1vmax;
 }
 %radius-large {
-  border-radius: 0.5vmax;
+  border-radius: 2vmax;
 }
 %pointer {
   cursor: pointer;
@@ -73,15 +77,64 @@
 body {
   min-height: 100vh;
 }
+.row-wrapper {
+  gap: 1rem;
+  @media (min-width: #{$media}) {
+    gap: 3rem;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
 .wrapper {
   align-items: start;
   counter-reset: step;
-  @media (max-width: 1200px) {
+  @extend %radius-normal;
+  @media (max-width: #{$media}) {
     height: 100vh;
     aside,
     form {
       grid-row: 1;
       grid-column: 1;
+    }
+  }
+  @media (min-width: #{$media}) {
+    max-width: max(1200px, 80%);
+    justify-self: center;
+    grid-template-columns: auto 1fr;
+    // column-gap: 10vw;
+    // background-color: transparent;
+    .sidebar {
+      height: 100%;
+      grid-row: span 2;
+      padding-block: 1.5rem;
+      padding-inline: 1.5rem 5rem;
+      gap: 2rem;
+      border-radius: 1vmax;
+      grid-auto-rows: max-content;
+
+      .step {
+        grid-auto-flow: column;
+        gap: 0.5rem;
+        grid-auto-columns: max-content;
+        align-self: start;
+        &::after {
+          content: "step " counter(step) ":\A"attr(data-desc);
+          white-space: pre;
+        }
+      }
+    }
+    .navigation {
+      grid-column: 2;
+    }
+    form {
+      padding-block-start: 5%;
+    }
+    .navigation {
+      padding-block-end: 5%;
+    }
+    .navigation,
+    form {
+      margin-inline: 15%;
     }
   }
   //   background-color: map-get($map: , $key: );
@@ -91,8 +144,10 @@ body {
   background-image: url("../img/bg-sidebar-desktop.svg");
   background-repeat: no-repeat;
   background-position: center;
-  @media (max-width: 1200px) {
+  background-size: cover;
+  @media (max-width: #{$media}) {
     background-image: url("../img/bg-sidebar-mobile.svg");
+
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     padding-inline: 20%;
@@ -102,36 +157,41 @@ body {
   gap: 0.5vw;
 }
 .step {
-  display: inline-block;
+  // grid-auto-flow: column;
+  // grid-template-columns: max-content;
+  // justify-self: center;
   counter-increment: step;
-  @media (max-width: 1200px) {
+  @media (max-width: #{$media}) {
     // opacity: 0;
     // visibility: collapse;
   }
 
   &::before {
+    width: 13vw;
+    max-width: 35px;
     content: counter(step);
+    text-align: center;
     display: grid;
     align-items: center;
     aspect-ratio: 1;
     outline: 1px solid white;
-    outline-offset: -1ch;
     border-radius: 50%;
   }
   &::after {
     content: attr(data-desc);
-    @media (max-width: 1200px) {
+    @media (max-width: #{$media}) {
       display: none;
     }
   }
 }
 form {
-  @media (max-width: 1200px) {
+  @media (max-width: #{$media}) {
     margin-inline: 4vw;
-    translate: 0 100px;
+    translate: 0 22vw;
   }
   @extend %radius-normal;
   overflow: hidden;
+  isolation: isolate;
 }
 fieldset {
   gap: 1rem;
@@ -142,22 +202,29 @@ fieldset {
   @extend %stick;
   @extend %checked;
   &:not([data-current]) {
-    translate: 100vw;
+    translate: 200vw;
   }
   &.plan {
     label {
       @extend %radius-normal;
       @extend %has-plan;
       @extend %label-padding;
-      grid-template-columns: auto 1fr;
-      grid-auto-rows: 3ch;
-      column-gap: 0.5rem;
+
       overflow: hidden;
+      @media (max-width: #{$media}) {
+        grid-template-columns: auto 1fr;
+        grid-auto-rows: 3ch;
+        column-gap: 0.5rem;
+        &::after {
+          grid-column: 2;
+        }
+      }
       &::before {
         content: var(--img);
-        grid-row: 1 / -1;
         align-self: start;
-        // margin-inline-end: 0.5rem;
+        @media (min-width: #{$media}) {
+          margin-block-end: 1.3rem;
+        }
       }
 
       &[for="arcade"] {
@@ -215,6 +282,9 @@ fieldset {
           }
         }
       }
+      @media (min-width: #{$media}) {
+        align-self: end;
+      }
     }
   }
   &.addons {
@@ -223,6 +293,13 @@ fieldset {
       grid-template-columns: auto 1fr auto;
       gap: 0.5rem;
       padding: 0.5rem;
+      @media (min-width: #{$media}) {
+        padding: 1.4rem 0.5rem;
+        p,
+        &::before {
+          margin-inline-start: 2rem;
+        }
+      }
       p {
         grid-column: 2;
         align-self: end;
@@ -241,7 +318,7 @@ fieldset {
       .identify {
         grid-column: 1;
         grid-row: 1 / span 2;
-        width: max(3vw, 20px);
+        width: max(1.2vw, 20px);
         pointer-events: none;
         aspect-ratio: 1;
         appearance: auto;
@@ -281,6 +358,12 @@ fieldset {
       }
     }
   }
+  &.thank-you {
+    .thanks::before {
+      content: url("../img/icon-thank-you.svg");
+      display: block;
+    }
+  }
   input {
     &:not([type="text"], [type="email"], [type="tel"]) {
       appearance: none;
@@ -309,16 +392,21 @@ fieldset {
   }
 }
 .navigation {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  @media (max-width: #{$media}) {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
   padding: 1.5rem 1rem;
   background-color: white;
   & > * {
     @extend %pointer;
     @extend %radius-normal;
     display: inline-block;
-    padding: 0.5em;
+    @media (max-width: #{$media}) {
+      padding: 0.5em;
+    }
+    padding: 1em;
   }
 }
 @keyframes move {

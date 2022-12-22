@@ -14,14 +14,34 @@
     <script src="/src/js/script.js" defer></script>
     <title>Frontend Mentor | Multi-step form</title>
   </head>
-  <body>
+  <body data-grid data-align-items="center">
     <!-- Sidebar start -->
     <div class="wrapper" data-grid="">
-      <aside class="sidebar" data-grid="">
-        <span class="step light-up" data-desc="Your info"></span
-        ><span class="step" data-desc="Select plan"></span
-        ><span class="step" data-desc="Add-ons"></span
-        ><span class="step" data-desc="Summary"></span>
+      <aside class="sidebar" data-grid>
+        <span
+          class="step light-up"
+          data-grid
+          data-align-items="center"
+          data-desc="Your info"
+        ></span
+        ><span
+          class="step"
+          data-grid
+          data-align-items="center"
+          data-desc="Select plan"
+        ></span
+        ><span
+          class="step"
+          data-grid
+          data-align-items="center"
+          data-desc="Add-ons"
+        ></span
+        ><span
+          class="step"
+          data-grid
+          data-align-items="center"
+          data-desc="Summary"
+        ></span>
       </aside>
       <form action="" data-grid>
         <fieldset data-grid class="personal-info first" data-current>
@@ -29,17 +49,23 @@
           <span class="req"
             >Please provide your name, email address, and phone number</span
           ><label data-grid="" for="name"
-            >Name<input
+            ><span data-flex class="validation">Name</span
+            ><input
+              required
               placeholder="e.g. Stephen King"
               type="text"
               id="name" /></label
           ><label data-grid="" for="email"
-            >Email Address<input
+            ><span data-flex class="validation">Email Address</span>
+            <input
+              required
               placeholder="e.g. stephenking@lorem.com"
               type="email"
               id="email" /></label
           ><label data-grid="" for="phone"
-            >Phone Number<input
+            ><span data-flex class="validation">Phone Number</span
+            ><input
+              required
               placeholder="e.g. +1 234 567 890"
               type="tel"
               id="phone"
@@ -50,41 +76,44 @@
           <span class="req"
             >You have the option of monthly or yearly billing.</span
           >
-          <label
-            data-relative
-            data-grid=""
-            for="arcade"
-            data-monthly="$9/mo"
-            data-yearly="$90/mo"
-            >arcade<input
-              data-absolute
-              type="radio"
-              name="pricing"
-              id="arcade"
-            />
-            <span>2 month free</span></label
-          ><label
-            data-relative
-            data-grid=""
-            for="advanced"
-            data-monthly="$12/mo"
-            data-yearly="$120/mo"
-            >advanced<input
-              data-absolute
-              type="radio"
-              name="pricing"
-              id="advanced"
-            />
-            <span>2 month free</span></label
-          ><label
-            data-relative
-            data-grid=""
-            for="pro"
-            data-monthly="$15/mo"
-            data-yearly="$150/mo"
-            >pro<input data-absolute type="radio" name="pricing" id="pro" />
-            <span>2 month free</span></label
-          >
+          <div class="row-wrapper" data-grid>
+            <label
+              data-relative
+              data-grid=""
+              for="arcade"
+              data-monthly="$9/mo"
+              data-yearly="$90/yr"
+              >arcade<input
+                data-absolute
+                type="radio"
+                name="pricing"
+                id="arcade"
+                checked
+              />
+              <span>2 month free</span></label
+            ><label
+              data-relative
+              data-grid=""
+              for="advanced"
+              data-monthly="$12/mo"
+              data-yearly="$120/yr"
+              >advanced<input
+                data-absolute
+                type="radio"
+                name="pricing"
+                id="advanced"
+              />
+              <span>2 month free</span></label
+            ><label
+              data-relative
+              data-grid=""
+              for="pro"
+              data-monthly="$15/mo"
+              data-yearly="$150/yr"
+              >pro<input data-absolute type="radio" name="pricing" id="pro" />
+              <span>2 month free</span></label
+            >
+          </div>
           <div
             class="charge-option"
             data-grid
@@ -158,26 +187,18 @@
               class="identify"
           /></label>
         </fieldset>
-        <fieldset data-grid class="summary last">
+        <fieldset data-grid class="summary">
           <legend>Finishing up</legend>
           <span class="req"
             >Double-check everything looks OK before confirming.</span
           >
           <div class="sum-up" data-grid>
             <div class="order" data-grid>
-              <span class="choice">your choice</span
-              ><span class="price">price</span
+              <span class="choice main-plan">your choice</span
+              ><span class="price main-price">price</span
               ><a href="" class="change">Change</a>
             </div>
             <hr />
-            <div class="order" data-grid>
-              <span class="choice">service</span
-              ><span class="price">price</span>
-            </div>
-            <div class="order" data-grid>
-              <span class="choice">service</span
-              ><span class="price">price</span>
-            </div>
           </div>
           <div
             class="total"
@@ -188,9 +209,18 @@
             <span>total:</span>
           </div>
         </fieldset>
+        <fieldset data-grid data-align-content="center" class="thank-you last">
+          <span class="thanks">Thank You!</span>
+          <span class="final-message">
+            Thanks for confirming your subscription! We hope you have fun using
+            our platform. If you ever need support, please feel free to email us
+            at support@loremgaming.com.
+          </span>
+        </fieldset>
       </form>
       <nav class="navigation" data-flex data-justify-content="space-between">
-        <a class="previous disable">Go back</a><a class="next">Next step</a>
+        <a class="previous disable">Go back</a>
+        <input type="submit" value="Next step" class="next" />
       </nav>
     </div>
     <!-- Step 1 Your info Step 2 Select plan Step 3 Add-ons Step 4 Summary -->

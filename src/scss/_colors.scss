@@ -14,13 +14,20 @@ $secondary: (
 %checked input:is([type="radio"], .cb) {
   outline: 1px solid map-get($secondary, "light-gray");
   outline-offset: -1px;
-  &:checked {
+  &:checked,
+  &:hover {
     outline: 1px solid map-get($primary, "marine-blue");
   }
 }
+%transition-base {
+  transition: 0.3s;
+}
 // backgrounds
-.wrapper {
+body {
   background-color: map-get($secondary, "magnolia");
+}
+.wrapper {
+  background-color: white;
 }
 form {
   background-color: white;
@@ -29,6 +36,7 @@ form {
 .plan,
 .addons {
   input:not(.charge):checked {
+    @extend %transition-base;
     z-index: -1;
     background-color: transparentize(map-get($secondary, "light-gray"), 0.6);
   }
@@ -41,22 +49,37 @@ form {
   }
 }
 .sum-up {
-  background-color: map-get($secondary, "light-gray");
+  background-color: map-get($secondary, "magnolia");
 }
 .next {
+  @extend %transition-base;
   background-color: map-get($primary, "marine-blue");
   color: white;
+  border: none;
+  &:hover {
+    background-color: map-get($primary, "purplish-blue");
+  }
 }
 .previous {
+  @extend %transition-base;
   color: map-get($secondary, "light-gray");
+  &:hover {
+    color: map-get($primary, "marine-blue");
+  }
 }
 // text
 .step {
   &.light-up::before {
+    color: black;
+  }
+  &::before,
+  &::after {
     color: white;
   }
-  &::before {
-    color: black;
+  @media (min-width: 1200px) {
+    &.light-up::before {
+      background-color: map-get($primary, "pastel-blue");
+    }
   }
 }
 .req {
@@ -66,12 +89,44 @@ form {
   color: map-get($secondary, "cool-gray");
 }
 label::before {
-  color: map-get($secondary, "light-gray");
+  @extend .previous;
   font-weight: 400;
 }
 label::after {
   color: map-get($primary, "marine-blue");
 }
 .total-cost {
+  color: map-get($primary, "marine-blue");
+}
+.total .total-cost {
+  color: map-get($primary, "purplish-blue");
+}
+.main {
+  &-plan,
+  &-price {
+    @extend .total-cost;
+  }
+}
+.change,
+.order {
+  color: map-get($secondary, "cool-gray");
+  @extend %transition-base;
+}
+fieldset.thank-you {
+  .thanks {
+    color: map-get($primary, "marine-blue");
+  }
+  .final-message {
+    @extend .change;
+  }
+}
+.validation.fail::after {
+  color: map-get($primary, "strawberry-red");
+}
+input.fail {
+  outline: 2px solid map-get($primary, "strawberry-red");
+  outline-offset: 1px;
+}
+.change:hover {
   color: map-get($primary, "marine-blue");
 }
